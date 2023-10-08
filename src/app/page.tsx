@@ -1,6 +1,22 @@
-function HomePage() {
+import TaskCard from '@/components/TaskCard'
+
+async function loasTasks() {
+  const resp = await fetch('http://localhost:3000/api/task');
+  return await resp.json();
+}
+
+async function HomePage() {
+  const tasks = await loasTasks();
+
   return (
-    <div>Tasks</div>
+    <section className="container mx-auto">
+      <div className="grid grid-cols-3 gap-3 mt-10">
+        {tasks.map((task: any) => (
+          <TaskCard key={task.id} task={task} />
+
+        ))}
+      </div>
+    </section>
   )
 }
 
