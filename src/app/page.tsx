@@ -1,7 +1,8 @@
 import TaskCard from '@/components/TaskCard'
 
 async function loasTasks() {
-  const resp = await fetch('http://localhost:3000/api/task');
+  const timestamp = new Date().getTime();
+  const resp = await fetch(`http://localhost:3000/api/task?timestamp=${timestamp}`);
   return await resp.json();
 }
 
